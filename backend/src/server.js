@@ -1,15 +1,10 @@
-import express from 'express'
+import connectDB from './db/dBConnection.js'
+import dotenv from 'dotenv'
 
-const app = express()
+dotenv.config({
+    path: './.env'
+}) 
 
-const PORT = process.env.PORT || 8080
-
-app.use('/',(req,res) => {
-    res.send('hello');
-})
-
-app.listen(PORT,() => {
-    console.log(`Server is up and running at http://localhost:${PORT}`);
-})
+connectDB()
 
 
