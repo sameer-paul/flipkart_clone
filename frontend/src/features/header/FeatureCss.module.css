@@ -1,0 +1,13 @@
+.navItem {
+    @apply flex h-10 w-fit items-center gap-2 justify-center pl-2 pr-2 text-lg
+}
+
+
+
+/* LoginFeature */
+
+.loginButton:hover {
+    background-color: #2A55E5;
+    color: #ffffff;
+
+}
