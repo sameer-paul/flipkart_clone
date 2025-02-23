@@ -26,7 +26,6 @@ import sellerProfileRouter from "./routes/seller/sellerProfile.routes.js"
 
 // routes declaration
 
-
 app.use("/api/v1/auth",authRouter)
 app.use("/api/v1/seller",sellerProfileRouter)
 app.use("/api/v1/product",productRouter)

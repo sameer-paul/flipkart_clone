@@ -68,14 +68,9 @@ const updateSellerInfo = asyncHandler(async(req,res) => {
 })
 
 
-// const deleteSellerInfo = asyncHandler(async(req,res) => {
-//     const{_id,userType} = req.userDetail
-    
+const deleteSellerInfo = asyncHandler(async(req,res) => {
+    const{_id,userType} = req.userDetail
+    return res.send("this controller is not completed")
+})
 
-
-
-
-//     return res.send("delete seller info")
-// })
-
-export {readSellerInfo,updateSellerInfo}
+export {readSellerInfo,updateSellerInfo,deleteSellerInfo}
