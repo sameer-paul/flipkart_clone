@@ -1,4 +1,4 @@
-import userModel from "../models/consumer/user.model.js"
+import consumerModel from "../models/consumer/consumer.model.js";
 import ApiError from "../utils/apiError.js"
 import asyncHandler from "../utils/asyncHandler.js"
 import jwt from "jsonwebtoken"
@@ -19,7 +19,7 @@ const refreshAccessToken = asyncHandler(async (req,res) => {
         try {
             const decodedToken = jwt.verify(incomingRefreshToken,process.env.REFRESH_TOKEN_SECRET)
     
-            const user = await userModel.findById(decodedToken?._id)
+            const user = await consumerModel.findById(decodedToken?._id)
     
             if(!user) {
                 throw new ApiError(401,"invalid refresh token")

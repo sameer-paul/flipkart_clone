@@ -20,11 +20,15 @@ app.use(cookieParser())
 // routes
 
 import authRouter from "./routes/auth.routes.js" 
+import productRouter from "./routes/products.routes.js"
+import sellerProfileRouter from "./routes/seller/sellerProfile.routes.js"
 
 
 // routes declaration
 
 
 app.use("/api/v1/auth",authRouter)
+app.use("/api/v1/seller",sellerProfileRouter)
+app.use("/api/v1/product",productRouter)
 
 export default app

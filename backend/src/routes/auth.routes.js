@@ -1,24 +1,23 @@
 import Router from "express"
-import signupVerification from "../controllers/signupVerification.controller.js"
-import signupConsumer from "../controllers/signupConsumer.controller.js"
-import loginVerification from "../controllers/loginVerification.controller.js"
-import loginConsumer from "../controllers/loginConsumer.controller.js"
-import verifyJWT from "../middlewares/auth.middleware.js"
-import logoutConsumer from "../controllers/logoutConsumer.controller.js"
+import logout from "../controllers/user/logout.controller.js"
 import refreshAccessToken from "../controllers/refreshAccessToken.controller.js"
+import requestOtp from "../controllers/user/requestOtp.controller.js"
+import signupAndLoginUser from "../controllers/user/signupAndLoginUser.controller.js"
+import verifyJWT from "../middlewares/verifyJWT.middleware.js"
 
 const router = Router()
 
-router.route("/signup-verification").post(signupVerification)
-router.route("/signup").post(signupConsumer)
 
-router.route("/login-verification").post(loginVerification)
-router.route("/login").post(loginConsumer)
+// registering user
+
+router.route("/request-auth-otp").post(requestOtp)
+router.route("/user-authentication").post(signupAndLoginUser)
+
 
 
 // secured routes
 
-router.route("/logout").post(verifyJWT,logoutConsumer)
+router.route("/logout").post(verifyJWT,logout)
 router.route("/refresh-token").post(refreshAccessToken)
 
 export default router
