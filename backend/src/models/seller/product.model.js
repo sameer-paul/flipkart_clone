@@ -6,9 +6,10 @@ const productSchema = new Schema({
     sellerId: { type: Schema.Types.ObjectId, ref: "seller", required: true, index: true },
     productDetails: { type: Map, of: Schema.Types.Mixed, required: true }, // Ensuring product details are always provided
     variants: [{ type: Schema.Types.ObjectId, ref: "variant" }]
-}, { timestamps: true });
+}, {timestamps: true });
 
-export const Product = model("product", productSchema);
+
+export default model("product", productSchema);
 
 
 

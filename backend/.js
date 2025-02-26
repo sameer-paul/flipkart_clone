@@ -225,3 +225,30 @@ export const Store = model("store", storeSchema);
 //     if(type!=='object' || !obj) return obj;
 //     return Object.fromEntries(Object.entries(obj).map(([key,value]) =>[key,deepClone(value)])); 
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+["_id", "__v", "createdAt", "updatedAt", "refreshToken", ...excludeFields];

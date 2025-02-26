@@ -16,7 +16,9 @@ const getStoreCategory = asyncHandler(async (req, res) => {
             }  
         } 
     ]);
-    res.status(200).json(new ApiResponse(200, stores, "Stores fetched successfully"));
+    console.log(stores);
+    
+    res.status(200).json(new ApiResponse(200, stores[0]._id, "Stores fetched successfully"));
 });
 
 const createStore = asyncHandler(async(req,res) => {

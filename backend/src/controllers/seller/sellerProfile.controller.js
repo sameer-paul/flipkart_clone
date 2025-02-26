@@ -2,27 +2,9 @@ import sellerModel from "../../models/seller/seller.model.js";
 import ApiResponse from "../../utils/apiResponse.js";
 import asyncHandler from "../../utils/asyncHandler.js";
 import deepMerge from "../../utils/deepMerge.utility.js";
+import checkMissingField from "../../utils/isComplete.utility.js";
 
-// Function to check for missing fields dynamically
-const checkMissingField = (schemaFields, sellerData) => {
-    for (const key of schemaFields) {
-        if (["_id", "__v", "createdAt", "updatedAt", "refreshToken"].includes(key)) continue;
-
-        const value = sellerData[key];
-
-        // If field is missing or empty (null, undefined, empty string)
-        if (!value) return true;
-
-        // If the field is an object, check its properties recursively
-        if (typeof value === "object" && !Array.isArray(value)) {
-            const nestedFields = Object.keys(value);
-            if (checkMissingField(nestedFields, value)) return true;
-        }
-    }
-    return false;
-};
-
-
+const excludeFields = ["_id", "__v", "createdAt", "updatedAt", "refreshToken"]
 
 const readSellerInfo = asyncHandler(async (req, res) => {
     // Get _id from req.userDetail
@@ -36,7 +18,7 @@ const readSellerInfo = asyncHandler(async (req, res) => {
     const schemaFields = Object.keys(sellerModel.schema.paths)
     
     // Check for missing fields dynamically (exit early if any field is missing)
-    const isComplete = checkMissingField(schemaFields,sellerData)
+    const isComplete = checkMissingField(schemaFields,sellerData,excludeFields)
     
     return isComplete? 
     res.status(200).json(new ApiResponse(200,{},"seller info is complete")): 
@@ -58,7 +40,7 @@ const updateSellerInfo = asyncHandler(async(req,res) => {
     const sellerData = sellerInfo.toObject();
     const schemaFields = Object.keys(sellerModel.schema.paths)
     const mergedData = deepMerge(sellerData,incomingData)
-    const isIncomplete = checkMissingField(schemaFields,mergedData)
+    const isIncomplete = checkMissingField(schemaFields,mergedData,excludeFields)
     if (isIncomplete) return res.status(400).json(new ApiResponse(400, null, "Missing fields encountered"));
     
     // Perform the update in the database
