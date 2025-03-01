@@ -1,10 +1,9 @@
 import React from "react";
-import logo from '../../assets/images/logo.svg'
 
 function LogoFeature() {
   return (
     <>
-        <img src={logo} alt="logo" className=''/>
+        <p className="text-2xl">Shop-Cart</p>
     </>
 )}
 
