@@ -29,3 +29,19 @@ login
         - checks if the otp in db and header matches   
         - generates access and refresh token
         - returns token in response   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
